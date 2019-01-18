@@ -1,6 +1,7 @@
 package kr.green.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.AccountDao;
@@ -11,6 +12,9 @@ public class AccountServiceImp implements AccountService {
 	/* Autowired는 객체 생성을 자동으로 해준다. */
 	@Autowired
 	private AccountDao accountDao;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	public AccountVo getAccount(String id) {
@@ -29,6 +33,8 @@ public class AccountServiceImp implements AccountService {
 		String id = accountVo.getId();
 		AccountVo tmp = accountDao.getAccount(id);
 		if(tmp == null) {
+			String encPw = passwordEncoder.encode(accountVo.getPw());
+			accountVo.setPw(encPw);
 			accountVo.setAuthority("user");
 			accountDao.insertAccount(accountVo);
 			return true;
@@ -37,13 +43,13 @@ public class AccountServiceImp implements AccountService {
 	}
 
 	@Override
-	public boolean signin(String id, String pw) {
+	public AccountVo signin(String id, String pw) {
 		// TODO Auto-generated method stub
 		AccountVo user = accountDao.getAccount(id);
-		if(user != null && user.getPw().equals(pw)) {
-			return true;
+		if(user != null && passwordEncoder.matches(pw, user.getPw())) {
+			return user;
 		}
-		 return false;
+		 return null;
 	}
 
 

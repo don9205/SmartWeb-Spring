@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>로 그 인 완 료</h1>
-
+	${user.id}
+  ${user.pw}
+  <!-- BoardController에 model.addAttribute("user",user) 추가하지 않아도 사용이 가능해진다 -->
 </body>
 </html>

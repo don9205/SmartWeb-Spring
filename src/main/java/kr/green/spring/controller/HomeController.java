@@ -26,13 +26,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String homePost(String id, String pw) {
-		if(accountService.signin(id,pw)) {
+	public String homePost(String id, String pw, Model model) {
+		AccountVo user = accountService.signin(id,pw);
+		if( user != null) {
 			System.out.println("성공");
+			model.addAttribute("user", user);
 		return "redirect:/bbs/list";	
 		}
-		System.out.println("실패");
-		return "redirect:/";
+		else {
+			System.out.println("실패");
+			return "redirect:/";
+		}
 
 
 	}
