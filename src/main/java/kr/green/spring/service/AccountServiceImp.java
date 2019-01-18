@@ -36,4 +36,15 @@ public class AccountServiceImp implements AccountService {
 			return false;
 	}
 
+	@Override
+	public boolean signin(String id, String pw) {
+		// TODO Auto-generated method stub
+		AccountVo user = accountDao.getAccount(id);
+		if(user != null && user.getPw().equals(pw)) {
+			return true;
+		}
+		 return false;
+	}
+
+
 }

@@ -8,6 +8,11 @@
     	from account 
     	where id = #{id}
   </select>
+  <select id="setAccount">
+  	 select * 
+    	from account 
+    	where (id,pw) = (#{id},#{pw})
+  </select>
   <insert id="insertAccount">
   	insert 
   		into account (id, pw, email, gender, authority)

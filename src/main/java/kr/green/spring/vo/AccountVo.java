@@ -55,5 +55,6 @@ public class AccountVo {
 				+ registered_date + ", authority=" + authority + "]";
 	}
 
+
 	
 }
