@@ -25,9 +25,10 @@ public class BoardController {
 	public String list(Model model) {
 		List<BoardVo> boardList =  boardService.getBoards();
 		model.addAttribute("list",boardList);
-		for(BoardVo tmp : boardList) {
-			System.out.println(tmp);
-		}
+		/*
+		 * for(BoardVo tmp : boardList) { System.out.println(tmp); }
+		 * ㅅ
+		 */
 		return "bbs/list";
 	}
 	
