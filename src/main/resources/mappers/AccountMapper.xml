@@ -8,6 +8,7 @@
     	from account 
     	where id = #{id}
   </select>
+<<<<<<< Updated upstream
   <select id="setAccount">
   	 select * 
     	from account 
@@ -17,5 +18,11 @@
   	insert 
   		into account (id, pw, email, gender, authority)
 		values (#{id}, #{pw}, #{email}, #{gender}, #{authority})
+=======
+  <insert id="insertAccount">
+  	insert 
+  		INTO account (id, pw, email)
+		VALUES (#{id}, #{pw}, #{email})
+>>>>>>> Stashed changes
   </insert>
 </mapper>

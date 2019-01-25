@@ -1,7 +1,10 @@
 package kr.green.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< Updated upstream
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+=======
+>>>>>>> Stashed changes
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.AccountDao;
@@ -13,9 +16,12 @@ public class AccountServiceImp implements AccountService {
 	@Autowired
 	private AccountDao accountDao;
 	
+<<<<<<< Updated upstream
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
+=======
+>>>>>>> Stashed changes
 	@Override
 	public AccountVo getAccount(String id) {
 		return accountDao.getAccount(id);
@@ -33,15 +39,19 @@ public class AccountServiceImp implements AccountService {
 		String id = accountVo.getId();
 		AccountVo tmp = accountDao.getAccount(id);
 		if(tmp == null) {
+<<<<<<< Updated upstream
 			String encPw = passwordEncoder.encode(accountVo.getPw());
 			accountVo.setPw(encPw);
 			accountVo.setAuthority("user");
+=======
+>>>>>>> Stashed changes
 			accountDao.insertAccount(accountVo);
 			return true;
 		}else
 			return false;
 	}
 
+<<<<<<< Updated upstream
 	@Override
 	public AccountVo signin(String id, String pw) {
 		// TODO Auto-generated method stub
@@ -53,4 +63,6 @@ public class AccountServiceImp implements AccountService {
 	}
 
 
+=======
+>>>>>>> Stashed changes
 }
